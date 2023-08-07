@@ -9,11 +9,11 @@
 //  * Example
 //  * > sayHello("codeup") // returns "Hello, codeup!"
 //
-// function sayHello(name) {
-//     let message = ("Hello, Codeup!");
-//     console.log(message);
-// }
-// sayHello();
+function sayHello(name) {
+    let message = ("Hello, Codeup!");
+    console.log(message);
+}
+sayHello();
 
 // /**
 //  * TODO:
@@ -23,11 +23,11 @@
 //  * console.log 'helloMessage' to check your work
 //  */
 
-// function sayHello(name) {
-//     let helloMessage = "Hello, ";
-//     console.log(helloMessage + "Genesis!");
-// }
-// sayHello();
+function sayHello(name) {
+    let helloMessage = "Hello, ";
+    console.log(helloMessage + "Genesis!");
+}
+
 
 
 // /**
