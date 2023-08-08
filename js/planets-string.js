@@ -20,6 +20,7 @@ console.log(planetsString2);
 // Create another string that would display your planets in an undordered
 //  list. You will need an opening AND closing <ul> tags around the entire
 //  string, and <li> tags around each planet.
+
 <ul>
     <li>Mercury</li>
     <li>Venus</li>
