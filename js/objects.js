@@ -48,7 +48,7 @@ person.sayHello();
 shoppers.forEach(shopper => {
     let discountApplied = false;
     let discountedPrice = shopper.amount;
-    console.log(`The price before discount is applied is: $${shopper.amount.toFixed(2)}`);
+    console.log(`The price before discount for ${shopper.name} is applied is: $${shopper.amount.toFixed(2)}`);
     if (shopper.amount >= 200) {
         discountedPrice = (shopper.amount * .88)
         discountApplied = true;
