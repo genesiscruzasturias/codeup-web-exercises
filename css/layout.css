@@ -1,0 +1,549 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@700&display=swap');
+
+/*
+    The "page wrapper" is the outermost container for the page. It mimics
+    the behavior of the body tag, but is a container element so that it can be styled
+    with more flexibility than the body tag.
+*/
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*
+    The "container", sometimes referred to as a "section", is a container
+    element (semantic when applicable) that vertically separates different
+    areas on the page based on their purpose or topic. It can allow different
+    background colors and properties for each section that help users associate
+    content within it as belonging to the same subject.
+*/
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*
+    The "row" is a container element that horizontally separates its
+    children, which are usually columns. It also performs a secondary role
+    of keeping the content of the site within a reasonable width, so that
+    wider screens don't disrupt the intended layout.
+*/
+.row {
+    display: flex;
+    width: 100%;
+    max-width: 1280px;
+}
+.row.full-width {
+    max-width: unset;
+}
+
+/*
+    The "column" is a container element that vertically separates its
+    children, which are usually content elements. When paired with sibling columns,
+    it allows for the creation of a flexible grid system that can be used
+    to create a variety of layouts.
+*/
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 0;
+}
+.column.side-nav {
+    flex: 0 0 300px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    display: flex;
+    width: 627px;
+    height: 120px;
+    text-align: left;
+    padding-left: 80px;
+    font-family: Raleway;
+    font-size: 40px;
+    float: left;
+}
+a {
+    color: inherit;
+    text-decoration: unset;
+    transition: all ease 0.3s;
+}
+.mynav {
+    border: solid black;
+}
+/*This is our utility class for flex properties!*/
+.d-flex {
+    display: flex;
+}
+.align-items-center {
+    align-items: center;
+}
+.align-items-start {
+    align-items: start;
+}
+.align-items-end {
+    align-items: end;
+}
+.justify-content-center {
+    justify-content: center;
+}
+.justify-content-start {
+    justify-content: start;
+}
+.justify-content-end {
+    justify-content: end;
+}
+.justify-content-between {
+    justify-content: space-between;
+}
+.justify-content-around {
+    justify-content: space-around;
+}
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-grow {
+    flex: 1 0 0;
+}
+.flex-shrink {
+    flex: 0 1 auto;
+}
+
+/*Padding utility classes*/
+.p-0 {
+    padding: 0;
+}
+.p-5 {
+    padding: 5px;
+}
+.p-10 {
+    padding: 10px;
+}
+.p-15 {
+    padding: 15px;
+}
+.p-20 {
+    padding: 20px;
+}
+.p-25 {
+    padding: 25px;
+}
+.p-30 {
+    padding: 30px;
+}
+
+.px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.px-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.px-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.px-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.px-20 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.px-25 {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.px-30 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.py-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.py-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.py-15 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.py-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.py-25 {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.py-30 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+/*Margin Utility Class*/
+.m-0 {
+    margin: 0;
+}
+.m-5 {
+    margin: 5px;
+}
+.m-10 {
+    margin: 10px;
+}
+.m-15 {
+    margin: 15px;
+}
+.m-20 {
+    margin: 20px;
+}
+.m-25 {
+    margin: 25px;
+}
+.m-30 {
+    margin: 30px;
+}
+.mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.mx-5 {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.mx-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.mx-15 {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.mx-20 {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.mx-25 {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.mx-30 {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.my-5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.my-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.my-15 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.my-20 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.my-25 {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.my-30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+/*Gap Utility Class*/
+.gap-0 {
+
+}
+.gap-5 {
+    gap: 5px;
+}
+.gap-10 {
+    gap: 10px;
+}
+.gap-15 {
+    gap: 15px;
+}
+.gap-20 {
+    gap: 20px;
+}
+.gap-25 {
+    gap: 25px;
+}
+.gap-30 {
+    gap: 30px;
+}
+.gap-35 {
+    gap: 35px;
+}
+.gap-40 {
+    gap: 40px;
+}
+.footer {
+    left: 10px;
+    bottom: 5px;
+    right: 10px;
+    width: 1440px;
+    height: 391px;
+    background-color: #07043B;
+    color: white;
+    text-align: center;
+}
+.footer-text-center {
+    font-size:16px;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    align-self: center;
+}
+a.menu {
+    display: flex;
+}
+/*a.menu:hover {*/
+/*    background-color:yellow;*/
+/*    font-size:20px;*/
+/*}*/
+.fylo-pic-1 {
+    max-width: 640px;
+    max-height: 474px;
+    align-self: end;
+
+}
+.paragraph1 {
+    font-family: Raleway;
+    font-size: 40px;
+    font-style: normal;
+    line-height: 60px;
+    width: 627px;
+    margin-left: 80px;
+
+}
+.paragraph2 {
+    font-family: Open Sans;
+    font-size: 17px;
+    line-height: 24px;
+    width: 585px;
+    margin-left: 80px;
+}
+.email-box {
+    width: 320px;
+    height: 45px;
+    padding-left: 80px;
+    flex-shrink: 0;
+    margin-left: 80px;
+}
+.button {
+    width: 200px;
+    height: 45px;
+    flex-shrink: 0;
+    background-color: #6c9bff;
+    color: #fff;
+}
+.button .email-box {
+    margin: 16px;
+}
+h1 {
+
+}
+.paragraph3 {
+    width: 648px;
+    height: 47px;
+    margin-left: 80px;
+    text-align: left;
+    font-size: 40px;
+    font-family: Raleway;
+}
+
+.paragraph3 .paragraph4 .paragraph5 {
+    margin: 16px;
+}
+.paragraph4 {
+    font-family: "Open Sans";
+    font-size: 16px;
+    margin-left: 80px;
+    font-weight: 400;
+    font-style: normal;
+}
+.paragraph5 {
+    font-family: "Open Sans";
+    font-size: 16px;
+    margin-left: 80px;
+    font-weight: 400;
+    font-style: normal;
+}
+.navbar2 {
+    margin-left: 80px;
+    color: #71DFCC;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.button2 {
+    display: inline-flex;
+    height: 12px;
+    width: 12px;
+    align-items: center;
+    justify-content: center;
+    background-color: #71DFCC;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.arrow {
+    width: 100%;
+    height: auto;
+}
+.picture2 {
+    max-width: 542px;
+    max-height: 409px;
+    align-self: end;
+    margin-right: 80px;
+}
+.paragraph6 {
+    width: 347px;
+    height: 48px;
+    margin-left: 80px;
+    text-align: left;
+    font-size: 40px;
+    font-family: Raleway;
+}
+.paragraph7 {
+    font-family: "Open Sans";
+    font-size: 16px;
+    margin-left: 80px;
+    font-weight: 400;
+    font-style: normal;
+    width: 533px;
+    height: 72px;
+    line-height: 24px;
+    letter-spacing: 0.5px
+}
+.paragraph6 .paragraph7 {
+    margin: 17px;
+}
+.section2 {
+    background-color: #575988;
+    color: #fff;
+    font-family: Raleway;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+}
+.email-box1 {
+    width: 480px;
+    height: 48px;
+    margin-right: 80px;
+}
+.small-text {
+    color: #FFF;
+    font-family: Open Sans;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.4px
+}
+.button3 {
+    width: 200px;
+    height: 45px;
+    flex-shrink: 0;
+    background-color: #6c9bff;
+    color: #fff;
+}
+.email-box1 .small-text .button3 {
+    margin: 16px;
+}
+#footer-left-side {
+    margin-left: 80px;
+    margin-top: 92px;
+    flex-direction: column;
+}
+.footer-pic1 {
+    width: 24px;
+    height: 24px;
+}
+#footer-left-side .footer-pic1 .footer-pic2{
+    margin: 36px;
+}
+.footer-pic2 {
+    width: 24px;
+    height: 24px;
+}
+.number {
+    display: flex;
+}
+.fylo-email {
+    display: flex;
+}
+.phone-number img {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    top: 15px;
+    right: 5px;
+}
+.phone-number {
+    display: flex;
+    /*position: absolute;*/
+    margin-right: 120px;
+}
+.email-logo img {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+    top: 15px;
+    right: 5px;
+}
+.email-logo {
+    display: flex;
+    /*position: absolute;*/
+    margin-right: 120px;
+}
+.footer-text-center {
+    margin-left: 200px;
+    margin-top: 200px;
+    padding-bottom: 18px;
+}
+.footer-logo {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+.footer-logo img {
+    shape-outside: circle();
+}
+

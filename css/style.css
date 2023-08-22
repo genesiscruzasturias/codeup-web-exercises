@@ -8,20 +8,18 @@ header {
 }
 
 h2 {
-    background-color: burlywood;
-    font-family: "Comic Sans MS"
+    background-color: #ffd4ff;
+    font-family: "Comic Sans MS";
+    font-style: oblique;
 }
 
 body {
-    background-color: lightsteelblue;
-    background-size: auto;
-    font-family: "Comic Sans MS"
-}
-
-main {
     background-image: url("../img/Alone.jpg");
     background-repeat: no-repeat;
     background-position: center;
+    background-color: lightsteelblue;
+    background-size: auto;
+    font-family: "Comic Sans MS"
 }
 
 ul>li {
@@ -33,13 +31,19 @@ ol>li {
 }
 
 table {
-    border: 10px solid;
+    border: 5px solid;
     table-border-color-dark: brown;
-    border-color: brown;
-    border-collapse: collapse;
+    border-color: #d4ff73;
+    border-radius: 10px;
+    border-style: dashed;
     font-style: italic;
-
 }
+th {
+    background-color: cadetblue;
+    text-align: left;
+    padding: 8px;
+}
+
 
 a:hover {
     color: lightgreen;
