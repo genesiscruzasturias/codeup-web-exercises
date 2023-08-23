@@ -89,7 +89,6 @@
     display: flex;
     flex-direction: column;
     flex: 1 0 0;
-    order: 0;
 }
 /* Combo classes to extend the column's versatility */
 .column.shrink {
@@ -176,18 +175,178 @@
 .gap-40 {
     gap: 40px;
 }
+/*style*/
+.main.sub-section {
+    display: flex;
+    text-align: center;
+}
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+.main-float {
+    width: 50%;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+h2 {
+    margin: 0;
+}
+.sub-section-float {
 
-@media screen and (max-width: 900px) {
-    .hero .row {
+}
+.main-paragraph {
+    margin: 0;
+}
+.sub-paragraph {
+    margin: 0;
+}
+
+.row1 {
+    width: 100%;
+    display: flex;
+}
+h1 {
+    display: inline;
+}
+nav {
+    align-items: flex-end;
+}
+ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+    position: relative;
+}
+
+li {
+    float: right;
+    padding: 14px 16px;
+}
+.list {
+    margin-right: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+    .alert-info {
+        position: relative;
+        order: -1;
+    }
+    h1 {
+        order: 2;
+    }
+    .header-img {
+          width: 339px;
+          height: 224px;
+          flex-shrink: 1;
+      }
+    .footer1 {
+        display: flex;
+        position: relative;
+        top: 0;
+    }
+    #main {
+        flex-direction: column;
+        margin-top: 150px;
+        justify-content: center;
+    }
+    .sub-section-float {
+        flex-direction: column;
+        margin-top: 190px;
+        justify-content: center;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 400px) {
+    .column {
+        width: 100%;
+    }
+    .header-img {
+        width: 339px;
+        height: 224px;
+    }
+    .nav-links{
+        display: flex;
         flex-direction: column;
     }
+
 }
-.hero .column:has(img.hero-image-column){
-    order: -1;
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .column {
+        width: 100%;
+    }
+    .header-img {
+        width: 890px;
+        height: 385px;
+    }
+    .float-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+
 }
-@media print {
-    .column:has(img.hero-image-column){
-        display: none;
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #main.sub-section {
+        width: 100%!important;
+        justify-content: center;
+    }
+
+    .header-img {
+        width: 890px;
+        height: 385px;
+    }
+    .float-container{
+        display: flex;
+    }
+    .footer1 {
+        position: absolute;
+        left: 20px;
+        bottom: -300px;
+        width: 100%;
+        text-align: left;
     }
 }
-/*dont apply css unless it gets to that ^*/
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    #main {
+        width: 100%!important;
+        justify-content: center;
+    }
+
+    .header-img {
+        width: 890px;
+        height: 385px;
+    }
+    .main-float {
+        display: flex;
+        flex-direction: column;
+    }
+    .footer1 {
+        position: absolute;
+        left: 20px;
+        bottom: -300px;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/*!*!*ul.nav-links*! a {*/
+/*width, 100%*/
+/*flex-direction, column*/
+/*align-items: stretch*/
+/* *!*/
+/*!*ul nav links a*! {*/
+/*!*background-color; grey, width 100% display, block padding 10px 20px*!*/
+/*!*} *!*/
+/*!*.row:has(..main){*/
+/*flex-direction: column*!*/
