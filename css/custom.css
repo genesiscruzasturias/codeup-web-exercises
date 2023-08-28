@@ -52,7 +52,7 @@ h1 {
 }
 .card {
     width: 1250px;
-    margin-left: 90px;
+    /*margin-left: 90px;*/
 }
 p {
     display: inline-block;
@@ -92,7 +92,6 @@ p {
 }
 h6 {
     display: flex;
-    margin-left: 90px;
     padding-left: 15px;
     width: 1250px;
     flex-direction: row;
@@ -132,4 +131,15 @@ h6 {
         justify-content: flex-end;
         padding-left: 1200px;
     }
+    .container2 .panel-default {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: space-evenly;
+    }
+.radio {
+    display: flex;
+    position: relative;
+    right: 800px;
+}
 }
