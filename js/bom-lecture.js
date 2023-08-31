@@ -23,4 +23,4 @@ let delay = 5000; // delay time in milliseconds
 
 let timeOutId = setTimeout(function (){
     alert("Here is a delayed hello!");
-}, delay);
+}, delay)
