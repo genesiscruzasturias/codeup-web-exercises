@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,30 +13,27 @@
 <script>
     (function() {
         "use strict";
-        let count = 0;
+
         var detonationTimer = 5;
 
-        let interval = 1000;
         // TODO: This function needs to be called once every second
-        let intervalId2 = setInterval(function updateTimer() {
-            if (detonationTimer === 0) {
+        function updateTimer() {
+            if (detonationTimer == 0) {
                 alert('EXTERMINATE!');
                 document.body.innerHTML = '';
             } else if (detonationTimer > 0) {
                 document.getElementById('timer').innerHTML = detonationTimer;
-            } else {
-                detonationTimer--;
             }
-        }, interval)
 
+            detonationTimer--;
+        }
+        let interval = setInterval(updateTimer, 1000)
 
         // TODO: When this function runs, it needs to
         // cancel the interval/timeout for updateTimer()
-        let delay = 1000;
-        let timeOutId = setTimeout(function defuseTheBOM() {
-
-
-        }, delay);
+        function defuseTheBOM() {
+        clearTimeout(intervalId)
+        }
 
         // Don't modify anything below this line!
         //
