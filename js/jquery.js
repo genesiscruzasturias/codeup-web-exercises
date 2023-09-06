@@ -20,10 +20,32 @@ $('li').css('font-size', '20px');
 // $('p').css('background-color', '#FF0');
 // $('li').css('background-color', '#FF0');
 // $('h1').css('background-color', '#FF0');
+//
+// alert
+// var contents2 = $('h1').html();
+// alert(contents2);
+//
+// multiple
+// $('p, li, h1').css('background-color', '#FF0');
 
-//alert
-var contents2 = $('h1').html();
-alert(contents2);
+//change the background color of an h1 element when clicked
+$('h1').click(
+    function() {
+        $("h1").css('background-color', '#FF0');
+    });
 
-//multiple
-$('p, li, h1').css('background-color', '#FF0');
+//paragraphs have a font size of 18px when they are double clicked
+$('p').dblclick(
+    function() {
+        $("p").css('font-size', '18px');
+    });
+
+//li text color to red when the mouse is hovering; reset to black when it is not.
+$('li').hover(
+    function() {
+        $(this).css('color', 'red');
+    },
+    function() {
+        $(this).css('color', 'black');
+    }
+);
