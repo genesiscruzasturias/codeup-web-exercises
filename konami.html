@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konami Code</title>
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="container">
+    <h1>Konami Code</h1>
+    <h2>You know what? We only have.. </h2>
+    <h4>(Type the lucky Konami Code:)</h4>
+  </div>
+
+
+<div id="currentTypingCode"></div>
+<br>
+<div id="currentTypingStr"></div>
+
+
+<button id="refresh">Reset</button>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+  "use strict";
+
+  // $(document).keyup(function(event){
+  //   console.log(event.keyCode);
+  // });
+  $(function() {
+    const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+    var input = [];
+
+    $("html").keyup(function(key){
+      input.push(key.which);
+      for(let i = 0; i < input.length; i++){
+        if (input[i] !== konami[i])
+          input = [];
+      }
+      if (input.length === konami.length){
+        // Enter what you want to happen here
+        $("body").css("background-image", "url('img/pexels-markus-spiske-3039036.jpg')");
+        input = [];
+      }
+    })
+    // let angelNumber1 = "333";
+    // let inputAngel1 = "";
+    //
+    // let angelNumber2 = ["38, 38, 40, 40, 37, 39, 37, 39, 66, 65"];
+    // let inputAngel2 = "";
+    //
+    //
+    // $("body").on("keypress", (e) => {
+    //   console.log("event object property 'originalEvent':");
+    //   console.log(e.originalEvent);
+    //   console.log("keycode: " + e.originalEvent.keyCode);
+    //   console.log("key: " + e.originalEvent.key);
+    //
+    //   inputAngel1 += e.originalEvent.keyCode;
+    //
+    //   inputAngel2 += e.originalEvent.key;
+    //
+    //   if(inputAngel1 === angelNumber1){
+    //     $("body").css("background-image", "url('img/pexels-markus-spiske-3039036.jpg')");
+    //     inputAngel1 = "";
+    //     inputAngel2 = "";
+    //   }
+    //
+    //   if(inputAngel2 === angelNumber2){
+    //     $("body").css("background-image", "url('img/pexels-markus-spiske-3039036.jpg')");
+    //     inputAngel1 = "";
+    //     inputAngel2 = "";
+    //   }
+    //
+    //   $("#currentTypingStr").text(inputAngel2);
+    //   $("#currentTypingCode").text(inputAngel1);
+    // })
+    //
+    // $("#refresh").on("click", () => {
+    //   location.reload();
+
+  });
+</script>
+</div>
+</body>
+</html>

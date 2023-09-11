@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Store</title>
+</head>
+<body>
+
+<h1>My Tool Store</h1>
+
+<table id="products">
+  <thead>
+  <tr>
+    <th class='yourTableTh'>Title</th>
+    <th class='yourTableTh'>Quantity</th>
+    <th class='yourTableTh'>Price</th>
+    <th class='yourTableTh'>Categories</th>
+  </tr>
+  </thead>
+  <tbody id="insertProducts"></tbody>
+</table>
+<button type="button" onclick="resetForm();">Custom Reset Button</button>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>
+
+  (function() {
+    function resetForm() {
+      document.getElementById("products").reset();
+    }
+    "use strict";
+    // TODO: Create an AJAX GET request for the file under data/inventory.json
+    $.ajax({
+      // contentType: "application/json",
+      type: "GET",
+      url: "data/inventory.json",
+      dataType: "json",
+      success: function (data) {
+        alert('Welcome!');
+        // res = data;
+        let items = '';
+        $.each(data, function (i, item) {
+          var rows = "<tr>"
+                  + "<td class='yourTableTh'>" + item.title + "</td>"
+                  + "<td class='yourTableTh'>" + item.quantity + "</td>"
+                  + "<td class='yourTableTh'>" + item.categories + "</td>"
+                  + "<td class='yourTableTh'>" + item.price + "</td>"
+                  + "</tr>";
+          $('#products').append(rows);
+        });
+
+        // window.location.href = "/Home/Details/" + data.id;
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $("#postResult").val(jqXHR.statusText);
+      }
+    });
+
+
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+  })();
+</script>
+
+</body>
+</html>
