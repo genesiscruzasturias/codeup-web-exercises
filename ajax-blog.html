@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax Blog</title>
+</head>
+<body>
+<div class="header">
+    <h2>My Cool Blog</h2>
+</div>
+
+<div class="container">
+<div class="row justify-content-center">
+    <div class="leftcolumn">
+        <div id="posts" class="card justify-content-center">
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    $.ajax({
+        // contentType: "application/json",
+        type: "GET",
+        url: 'data/blog.json',
+        dataType: "json",
+        success: function (data) {
+            alert('Welcome!');
+            // res = data;
+            let items = '';
+            $.each(data, function (i, item) {
+                var rows = "<tr>"
+                    + "<td class='yourTableTh'>" + item.title + "</td>"
+                    + "<td class='yourTableTh'>" + item.content + "</td>"
+                    + "<td class='yourTableTh'>" + item.categories + "</td>"
+                    + "<td class='yourTableTh'>" + item.date + "</td>"
+                    + "</tr>";
+                $('#posts').append(rows);
+            });
+
+            // window.location.href = "/Home/Details/" + data.id;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $("#postResult").val(jqXHR.statusText);
+        }
+    });
+</script>
+</body>
+</html>
