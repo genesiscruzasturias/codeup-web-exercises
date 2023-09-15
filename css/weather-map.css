@@ -1,0 +1,85 @@
+body{
+    background-color: background-color:  #3d3d29;;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.row{
+    display: flex;
+    /*background-color:  darkblue;*/
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+#insert-weather{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    color: red;
+    font-size: 15px;
+    background-color: lightblue;
+    opacity: 0.5;
+}
+
+#insert-weather:hover {
+    opacity: 1.0;
+}
+/*.temp-text{*/
+/*    padding: 10px;*/
+/*}*/
+/*.card-img-top{*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*}*/
+/*.col-two{*/
+/*    display: flex;*/
+/*    position: relative;*/
+/*    bottom: 935px;*/
+/*    left: 380px*/
+/*}*/
+/*#insert-forecast{*/
+/*    display: flex;*/
+/*    position: relative;*/
+/*    top: 0;*/
+/*}*/
+/*.row-two{*/
+/*    display: flex;*/
+/*    position: relative;*/
+/*    top: 500px;*/
+/*    right: 365px;*/
+/*}*/
+/*#insert-forecast{*/
+/*    display: flex;*/
+/*    position: relative;*/
+/*    top: 0;*/
+/*}*/
+/*.forecast-img{*/
+/*    display: flex;*/
+/*    width: 100%;*/
+/*    height: 450px;*/
+/*}*/
+#map {
+    display: flex;
+    margin-left: 150px;
+    width: 75%;
+    height: 500px;
+    margin-top: -300px;
+}
+.card{
+    display: flex;
+    width: 200px;
+    text-align: center;
+    text-transform: capitalize;
+    background-color: #4d5154;
+    opacity: 0.5;
+    margin-left: 50px
+}
+.card:hover {
+    opacity: 1.0;
+}
+.card-top{
+    display: flex;
+    height: 300px;
+    width: 75%;
+    margin-left: 130px;
+}

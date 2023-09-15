@@ -1,0 +1,7 @@
+.table{
+    display: flex;
+    border: 10px solid cornflowerblue;
+    width: 30%;
+    text-align: center;
+    justify-content: space-between;
+}

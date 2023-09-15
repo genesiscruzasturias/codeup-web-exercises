@@ -23,37 +23,62 @@ zoom: 5, // starting zoom
 
 // Shan Hu Restaurant
 let marker = new mapboxgl.Marker().setLngLat([-95.2842695714117, 29.679940006446124]).addTo(map);
-let popup = new mapboxgl.Popup().setLngLat([-95.2842695714117, 29.679940006446124]).setHTML("<p>Shan Hu Chinese Restaurant</p>").addTo(map);
+let popup = new mapboxgl.Popup().setHTML("<p>Shan-Hu Chinese Restaurant</p>");
 marker.setPopup(popup);
-
 // Reverse GeoCode to return information of Shan Hu
-reverseGeocode({lng: -95.2842695714117, lat: 29.679940006446124}, MAPBOX_API_TOKEN).then(function(results) {
-    // logs the address for The Alamo
-    console.log("The address for Shan-Hu Chinese Restaurant is: " + results + ".");
+let shanHuReverse = reverseGeocode({lng: -95.2842695714117, lat: 29.679940006446124}, MAPBOX_API_TOKEN).then(function(results) {
+
+    // console.log("The address for Shan-Hu Chinese Restaurant is: " + results + ".");
+    // let resultsArray = [results];
+    // console.log(resultsArray);
 });
+
 
 // Famous Crab
 let marker2 = new mapboxgl.Marker().setLngLat([-95.2101090024804, 29.60456901031543]).addTo(map);
-let popup2 = new mapboxgl.Popup().setLngLat([-95.2101090024804, 29.60456901031543]).setHTML("<p>The Famous Crab</p>").addTo(map);
+let popup2 = new mapboxgl.Popup().setHTML("<p>The Famous Crab</p>");
 marker2.setPopup(popup2);
 // GeoCode return for information of Famous Crab
-reverseGeocode({lng: -95.2101090024804, lat: 29.60456901031543}, MAPBOX_API_TOKEN).then(function(results) {
-    // logs the address for The Alamo
-    console.log("The address for The Famous Crab is: " + results + ".");
+let reverseCrab = reverseGeocode({lng: -95.2101090024804, lat: 29.60456901031543}, MAPBOX_API_TOKEN).then(function(results) {
+    // logs the address for Famous Crab
+    // console.log("The address for The Famous Crab is: " + results + ".");
+    // let resultsArray = [results];
+    // console.log(resultsArray);
 });
 
-// Emma's Mexican Grill
+// Emmas Grill
 let marker3 = new mapboxgl.Marker().setLngLat([-95.29944753869673, 29.559515394944306]).addTo(map);
-let popup3 = new mapboxgl.Popup().setLngLat([-95.29944753869673, 29.559515394944306]).setHTML("<p>Emma's Mexican Grill</p>").addTo(map);
+let popup3 = new mapboxgl.Popup().setHTML("<p>Emma's Mexican Grill</p>");
 marker3.setPopup(popup3);
 
 // GeoCode return for information of Emma's Grill
-reverseGeocode({lng: -95.29944753869673, lat: 29.559515394944306}, MAPBOX_API_TOKEN).then(function(results) {
-    // logs the address for The Alamo
-    console.log("The address for Emma's Mexican Grill is: " + results + ".");
+let reverseEmma = reverseGeocode({lng: -95.29944753869673, lat: 29.559515394944306}, MAPBOX_API_TOKEN).then(function(results) {
+    // logs the address for Emma's Grill
+    // console.log("The address for Emma's Mexican Grill is: " + results + ".");
+    // let resultsArray = [results];
+    // console.log(resultsArray);
 });
 
+let geocodeData = [
+    { name: 'Shan-Hu Chinese Restaurant',
+      lng:  -95.2842695714117,
+      lat: 29.679940006446124},
+    { name: 'The Famous Crab',
+        lng:  -95.2101090024804,
+        lat: 29.60456901031543},
+    { name: 'Emma\'s Mexican Grill',
+        lng:  -95.29944753869673,
+        lat:  29.559515394944306},
+]
+let emptyArray = [];
 
+    let myMarkers = "";
+    let myPopups= "";
+    geocodeData.forEach(function (element, index,array){
+        myMarkers = new mapboxgl.Marker().setLngLat([element.longitude, element.latitude]).addTo(map);
+        myPopups = new mapboxgl.Popup().setHTML(element.name + " <br> " + "Favorite dish: " + element.favoriteDish);
+        myMarkers.setPopup(myPopups);
+    });
 </script>
 </body>
 </html>
