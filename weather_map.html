@@ -13,14 +13,14 @@
     <div class="container-fluid">
         <div class="row">
         <!--NAVBAR-->
-        <nav class="navbar bg-body-tertiary">
-            <div class="container-fluid">
+            <nav class="navbar bg-body-tertiary">
+                <div class="container-fluid">
                 <a class="navbar-brand" href="#">Cruzzin' Weather</a>
-            </div>
-        </nav>
+                </div>
+            </nav>
         <div class="row ">
             <div class="col">
-                <!--SEATTLE CURRENT FORECAST-->
+                <!--SEATTLE AND SEARCHED CITY CURRENT FORECAST-->
                 <div class="card-top mb-3" id="insert-weather-img" >
                     <div class="insert-weather-img"></div>
                     <div class="card-body">
@@ -28,17 +28,17 @@
                         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
-            <!--SEATTLE 5 DAY FORECAST-->
+                <!--SEATTLE AND SEARCHED CITY 5 DAY FORECAST-->
                 <div class="col-forecast">
-                 <div id="insert-forecast" class="insert-forecast"></div>
+                    <div id="insert-forecast" class="insert-forecast"></div>
                 </div>
                 <div class="col">
-            <!--SEARCH FOR A CITY INPUT/BUTTON-->
-                <input id="mapbox-search" type="text" placeholder="Search for a location">
-                <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
-                <!--MY HANDY, DANDY MAP-->
-                <div id="map"></div>
-                <pre id="coordinates" class="coordinates"></pre>
+                    <!--SEARCH FOR A CITY INPUT/BUTTON-->
+                    <input id="mapbox-search" type="text" placeholder="Search for a location">
+                    <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
+                    <!--MY HANDY, DANDY MAP-->
+                    <div id="map"></div>
+                    <pre id="coordinates" class="coordinates"></pre>
                 </div>
             </div>
         </div>

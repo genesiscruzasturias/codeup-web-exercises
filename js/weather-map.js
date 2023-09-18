@@ -32,8 +32,8 @@ function updateForecast() {
         .then(response => response.json())
         // CONTAINS DATA FOR THE SPECIFIED CITY
         .then(list => {
-            //DIDNT UNDERSTAND IT BUT KNOW IT WORKS
-            const forecastItems = list.list.slice(0, 5); // Get the first 5 forecast items
+            //DIDNT UNDERSTAND IT BUT KNOW IT KIND OF WORKS
+            const forecastItems = list.list.slice(0, 80); // Get the first 5 forecast items
             // CLEARS "insert-forecast" element
             forecastElement.innerHTML = ''; // Clear previous forecast
 
@@ -56,7 +56,8 @@ function updateForecast() {
                 const forecastConditions = item.weather[0].main;
 
                 const forecastItem = document.createElement('div');
-                forecastItem.classList.add('forecast-div'); // Add this class for styling
+                forecastElement.classList.add('forecast-div-two')
+
 
                 forecastItem.innerHTML = `
                 <div class="day-week">${dayOfWeek}</div>
@@ -66,6 +67,7 @@ function updateForecast() {
                 <div>Low: ${tempLow}°F</div>
                 <br>
                 <div>${forecastConditions}</div>
+            
             `;
 
                 forecastElement.appendChild(forecastItem);
@@ -82,13 +84,15 @@ function updateForecast() {
 
 
                     currentCityElement.innerHTML = `
+                    <div class="forecast-div-two">
                     <div class="city-name">${data.name}</div>
                     <div>Current Temp:</div> 
                     <div>${data.main.temp.toFixed(0)}°F</div>
                     <div>Humidity:</div>
                     <div>${data.main.humidity}%</div>
                     <div>Conditions:</div> 
-                    <div class="cloud-img">${data.weather[0].main}</div>`;
+                    <div class="cloud-img">${data.weather[0].main}</div>
+                    </div>`;
                     // Process and use the forecast data as needed
                 })
         });
@@ -97,8 +101,8 @@ function updateForecast() {
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?'
 const BASE_FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast?'
-//
-console.log(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`)
+// JUST TO MAKE SURE I WAS RIGHT ON TRACK
+// console.log(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`)
 
 // SEATTLE 5 DAY FORECAST
 $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((list) => {
@@ -113,7 +117,6 @@ $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&a
 
         // Get day of week as a string
         const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'})
-        const clearIcon = 'https://openweathermap.org/img/w/10d.png'
 
         // Each Forecast Card
         html +=
@@ -155,7 +158,7 @@ $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&a
         } else if (data.weather[0].main === 'Clouds') {
             backgroundImageURL = 'url("img/pexels-alex-conchillos-3888585.jpg")';
         } else {
-            backgroundImageURL = 'url("img/pexels-zszen-john-2651796.jpg)';
+            backgroundImageURL = 'url("img/pexels-stephan-seeber-1261728.jpg")';
         }
 
         // Apply the background image to your card
@@ -164,14 +167,12 @@ $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&a
         $("#insert-weather").html(html);
     }
 
-
 // This is for the top card, current city forecast.
     function fetchAndUpdateCurrentCityWeather() {
         $.get(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((data) => {
             updateCurrentCityForecast(data);
         });
     }
-//
 // // Call the function to update the current city weather when the page loads
     fetchAndUpdateCurrentCityWeather();
 })
