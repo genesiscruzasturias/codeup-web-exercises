@@ -11,97 +11,51 @@
 <body>
 <div class="page-wrapper">
     <div class="container-fluid">
-    <div class="row flex-wrap flex-column">
-            <div class="card-top mb-3" id="insert-weather-img" >
-                <div class="insert-weather-img"></div>
-                <div class="card-body">
-                    <div id="insert-weather"></div>
-                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        <div class="card-group">
-            <div class="col-card">
-                <div id="day-one" class="card">
-                    <h3>Day <span class="day"> 1</span></b></h3>
-                    <b><p class="description" id="description-day-1"></p></b>
-                    <div><p><b>Temp (°F): </b></p><p id="temp-day-1"></p></div>
-                    <div><p><b>Humidity: </b></p><p id="humidity-day-1"></p></div>
-                    <div><p><b>Windspeed: </b></p><p id="windspeed-day-1"></p></div>
-                </div>
-            </div>
-            <div class="col-card">
-                <div class="card">
-                    <h3>Day <span class="day"> 2</span></b></h3>
-                    <b><p class="description" id="description-day-2"></p></b>
-                    <div><p><b>Temp (°F): </b></p><p id="temp-day-2"></p></div>
-                    <div><p><b>Humidity: </b></p><p id="humidity-day-2"></p></div>
-                    <div><p><b>Windspeed: </b></p><p id="windspeed-day-2"></p></div>
-                </div>
-            </div>
-            <div class="col-card">
-                <div class="card">
-                    <h3>Day <span class="day"> 3</span></b></h3>
-                    <b><p class="description" id="description-day-3"></p></b>
-                    <div><p><b>Temp (°F): </b></p><p id="temp-day-3"></p></div>
-                    <div><p><b>Humidity: </b></p><p id="humidity-day-3"></p></div>
-                    <div><p><b>Windspeed: </b></p><p id="windspeed-day-3"></p></div>
-                </div>
-            </div>
-            <div class="col-card">
-                <div class="card">
-                    <h3>Day <span class="day"> 4</span></b></h3>
-                    <b><p class="description" id="description-day-4"></p></b>
-                    <div><p><b>Temp (°F): </b></p><p id="temp-day-4"></p></div>
-                    <div><p><b>Humidity: </b></p><p id="humidity-day-4"></p></div>
-                    <div><p><b>Windspeed: </b></p><p id="windspeed-day-4"></p></div>
-                </div>
-            </div>
-            <div class="col-card">
-                <div class="card">
-                    <h3>Day <span class="day"> 5</span></b></h3>
-                    <b><p class="description" id="description-day-5"></p></b>
-                    <div><p><b>Temp (°F): </b></p><p id="temp-day-5"></p></div>
-                    <div><p><b>Humidity: </b></p><p id="humidity-day-5"></p></div>
-                    <div><p><b>Windspeed: </b></p><p id="windspeed-day-5"></p></div>
-                </div>
-            </div>
-        </div>
-    </div>
         <div class="row">
-            <div id="map"></div>
+        <!--NAVBAR-->
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Cruzzin' Weather</a>
+            </div>
+        </nav>
+        <div class="row ">
+            <div class="col">
+                <!--SEATTLE CURRENT FORECAST-->
+                <div class="card-top mb-3" id="insert-weather-img" >
+                    <div class="insert-weather-img"></div>
+                    <div class="card-body">
+                        <div id="insert-weather"></div>
+                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+            <!--SEATTLE 5 DAY FORECAST-->
+                <div class="col-forecast">
+                 <div id="insert-forecast" class="insert-forecast"></div>
+                </div>
+                <div class="col">
+            <!--SEARCH FOR A CITY INPUT/BUTTON-->
+                <input id="mapbox-search" type="text" placeholder="Search for a location">
+                <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
+                <!--MY HANDY, DANDY MAP-->
+                <div id="map"></div>
+                <pre id="coordinates" class="coordinates"></pre>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
-        <!--geocoder script for search location on map-->
+</div>
+        <!--GEOCODER-->
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
             <!-- jQuery CDN Below-->
             <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
             <!--API Keys Below-->
             <script src="js/keys.js"></script>
-    <script>
-        mapboxgl.accessToken = MAPBOX_API_TOKEN;
-        const map = new mapboxgl.Map({
-            container: 'map', // container ID
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-            style: 'mapbox://styles/mapbox/streets-v12', // style URL
-            center: [-122.33178089059577, 47.60769856291158], // starting position [lng, lat]
-            zoom: 9 // starting zoom
-        });
-        // Add the control to the map.
-        map.addControl(
-            new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl
-            })
-        );
-        </script>
-
-
-            <!--Custom JS below-->
+            <!--CUSTOM JS BELOW-->
              <script src="js/weather-map.js">
-                 <!--Bootstrap CDN-->
+                 <!--BOOTSRAP CDN-->
              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
              </script>
-
 </body>
 </html>

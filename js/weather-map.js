@@ -1,237 +1,178 @@
+"use strict";
+
+// INITIALIZE MAPBOX
+mapboxgl.accessToken = MAPBOX_API_TOKEN;
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: [-122.33178089059577, 47.60769856291158], // starting position [lng, lat]
+    zoom: 9 // starting zoom
+});
+// INITIALIZE MARKER FOR MAPBOX
+const marker = new mapboxgl.Marker({
+    draggable: true
+})
+    .setLngLat([0, 0])
+    .addTo(map);
+
+const currentCityElement = document.getElementById('insert-weather');
+const forecastElement = document.getElementById('insert-forecast');
+const updateButton = document.getElementById('update-forecast-btn');
+
+// NEW CITY 5 DAY FORECAST/CURRENT FORECAST
+function updateForecast() {
+    // GRABS THE CITY THE USER INPUT INTO THE TEXT FIELD PROVIDED
+    const cityInput = document.getElementById('mapbox-search').value;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${WEATHER_MAP_KEY}&units=imperial`;
+    const lngLat = marker.getLngLat();
+    // GROUPS THE FORECAST DATA DAY BY DAY
+    fetch(BASE_FORECAST_URL + `q=${cityInput}&appid=${WEATHER_MAP_KEY}&units=imperial`)
+        // CONVERTS API INTO JSON FORMAT
+        .then(response => response.json())
+        // CONTAINS DATA FOR THE SPECIFIED CITY
+        .then(list => {
+            //DIDNT UNDERSTAND IT BUT KNOW IT WORKS
+            const forecastItems = list.list.slice(0, 5); // Get the first 5 forecast items
+            // CLEARS "insert-forecast" element
+            forecastElement.innerHTML = ''; // Clear previous forecast
+
+            const forecastByDay = {};
+            forecastItems.forEach(item => {
+                const date = new Date(item.dt * 1000);
+                const dayOfWeek = date.toLocaleDateString('en-US', { weekday: 'long' });
+
+                // Group forecast items by day
+                if (!forecastByDay[dayOfWeek]) {
+                    forecastByDay[dayOfWeek] = item;
+                }
+            });
+
+            // Display the 5-day forecast
+            Object.keys(forecastByDay).forEach(dayOfWeek => {
+                const item = forecastByDay[dayOfWeek];
+                const forecastTemp = item.main.temp.toFixed(0);
+                const tempLow = item.main.temp_min.toFixed(0);
+                const forecastConditions = item.weather[0].main;
+
+                const forecastItem = document.createElement('div');
+                forecastItem.classList.add('forecast-div'); // Add this class for styling
+
+                forecastItem.innerHTML = `
+                <div class="day-week">${dayOfWeek}</div>
+                <hr>
+                <div>Main: ${forecastTemp}°F</div>
+                <hr>
+                <div>Low: ${tempLow}°F</div>
+                <br>
+                <div>${forecastConditions}</div>
+            `;
+
+                forecastElement.appendChild(forecastItem);
+            });
+
+            // Make the API request to fetch current city
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const currentCity = data.name;
+                    const currentTemp = data.main.temp.toFixed(0);
+                    const currentHumidity = data.main.humidity;
+                    const currentConditions = data.weather[0].main;
+
+
+                    currentCityElement.innerHTML = `
+                    <div class="city-name">${data.name}</div>
+                    <div>Current Temp:</div> 
+                    <div>${data.main.temp.toFixed(0)}°F</div>
+                    <div>Humidity:</div>
+                    <div>${data.main.humidity}%</div>
+                    <div>Conditions:</div> 
+                    <div class="cloud-img">${data.weather[0].main}</div>`;
+                    // Process and use the forecast data as needed
+                })
+        });
+}
+        updateButton.addEventListener('click', updateForecast);
+
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?'
-console.log(BASE_WEATHER_URL);
-
 const BASE_FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast?'
-
+//
 console.log(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`)
 
-$.get(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((data) => {
-
-    let html = `
-    <div class="city-name">${data.name}</div>
-    <div>Current Temp:</div> 
-    <div>${data.main.temp.toFixed(0)}</div>      
-    <div>Current Humidity:</div>
-    <div>${data.main.humidity}</div>
-    <div>Current conditions:</div> 
-    <div class="cloud-img">${data.weather[0].main}</div>`;
-
-    let backgroundImageURL = ``;
-
-    if (data.weather[0].main === 'Clear' && data.main.temp > 70) {
-        backgroundImageUrl = 'url("img/pexels-lukas-296234.jpg")';
-    } else if (data.weather[0].main === 'Clear' && data.main.temp <= 70) {
-        backgroundImageUrl = 'url("img/pexels-lukas-296234.jpg")';
-    } else if (data.weather[0].main === 'Rain') {
-        backgroundImageUrl = 'url("img/pexels-lukas-296234.jpg")';
-    } else {
-        backgroundImageUrl = 'url("img/pexels-lukas-296234.jpg")';
-    }
-    // Apply the background image to your card
-    $("#insert-weather-img").css('background-image', backgroundImageUrl, 'background-repeat', "no-repeat");
-
-
-    $("#insert-weather").html(html);
-
-})
-
+// SEATTLE 5 DAY FORECAST
 $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((list) => {
 
-    let html = `
-    <div>${list.list[0].dt_txt}</div>
-    <div>Main: ${list.list[0].main.temp.toFixed(0)}</div>
-    <div>Low: ${list.list[0].main.temp_min}</div>
-    <div>${list.list[0].weather[0].main}</div>
-    `;
+    let html = '';
 
-    // Day One
-    console.log(list.list[0].weather[0].description);
-    var descriptionOne = list.list[0].weather[0].description;
-    $("#description-day-1").text(descriptionOne);
+    for (let i = 0; i < 5; i++) {
+        const forecastData = list.list[i * 8];
+        // CONVERT TIMESTAP INTO DATE
+        const date = new Date(forecastData.dt * 1000);
+        // Multiply by 1000 on line 82 IOT convert seconds to millisconds
 
-    console.log(list.list[0].main.temp);
-    var tempOne = list.list[0].main.temp;
-    $("#temp-day-1").text(tempOne);
-    $("#temperature").text("Temp (°F): " + tempOne);
+        // Get day of week as a string
+        const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'})
+        const clearIcon = 'https://openweathermap.org/img/w/10d.png'
 
-    console.log(list.list[0].main.humidity);
-    var humidityOne = list.list[0].main.humidity;
-    $("#humidity-day-1").text(humidityOne);
-    $("#hot-tub").text("Humidity: " + humidityOne);
+        // Each Forecast Card
+        html +=
+            `<div class="forecast-div">
+        <div class="day-week">${dayOfWeek}</div>
+        <hr>
+        <div>Main: ${forecastData.main.temp.toFixed(0)}°F</div>
+        <hr>
+        <div>Low: ${forecastData.main.temp_min}°F</div>
+        <br>
+        <div>${forecastData.weather[0].main}</div>
+        </div>`
+    }
+    // Insert to cards
+    $("#insert-forecast").html(html);
+// ***************************************************************************
+// ***************************************************************************
 
-    console.log(list.list[0].wind.speed);
-    var windspeedOne = list.list[0].wind.speed;
-    $("#windspeed-day-1").text(windspeedOne);
-    $("#kite").text("Windspeed: " + windspeedOne);
-    //
-    // // Day Two
-    console.log(list.list[1].weather[0].description);
-    var descriptionTwo = list.list[1].weather[0].description;
-    $("#description-day-2").text(descriptionTwo);
+    // SEATTLE CURRENT FORECAST-TOP CARD
+    function updateCurrentCityForecast(data) {
+        let html = `
+<div class="city-name">${data.name}</div>
+<div>Current Temp:</div> 
+<div>${data.main.temp.toFixed(0)}°F</div>
+<div>Humidity:</div>
+<div>${data.main.humidity}%</div>
+<div>Conditions:</div> 
+<div class="cloud-img">${data.weather[0].main}</div>`;
 
-    console.log(list.list[1].main.temp);
-    var tempTwo = list.list[1].main.temp;
-    $("#temp-day-2").text(tempTwo);
+        let backgroundImageURL = '';
 
-    console.log(list.list[1].main.humidity);
-    var humidityTwo = list.list[1].main.humidity;
-    $("#humidity-day-2").text(humidityTwo);
+        if (data.weather[0].main === 'Clear' && data.main.temp > 70) {
+            backgroundImageURL = 'url("img/pexels-zszen-john-2651796.jpg")';
+            $("#insert-weather").css('color', 'black');
+        } else if (data.weather[0].main === 'Clear' && data.main.temp <= 70) {
+            backgroundImageURL = 'url("img/pexels-zszen-john-2651796.jpg")';
+        } else if (data.weather[0].main === 'Rain') {
+            backgroundImageURL = 'url("img/pexels-valeriia-miller-2530911.jpg")';
+        } else if (data.weather[0].main === 'Clouds') {
+            backgroundImageURL = 'url("img/pexels-alex-conchillos-3888585.jpg")';
+        } else {
+            backgroundImageURL = 'url("img/pexels-zszen-john-2651796.jpg)';
+        }
 
-    console.log(list.list[1].wind.speed);
-    var windspeedTwo = list.list[1].wind.speed;
-    $("#windspeed-day-2").text(windspeedTwo);
+        // Apply the background image to your card
+        $("#insert-weather-img").css('background-image', backgroundImageURL).css('background-repeat', 'no-repeat');
 
-    //Day Three
-    console.log(list.list[2].weather[0].description);
-    var descriptionThree = list.list[2].weather[0].description;
-    $("#description-day-3").text(descriptionThree);
-
-    console.log(list.list[2].main.temp);
-    var tempThree = list.list[2].main.temp;
-    $("#temp-day-3").text(tempThree);
-
-    console.log(list.list[2].main.humidity);
-    var humidityThree = list.list[2].main.humidity;
-    $("#humidity-day-3").text(humidityThree);
-
-    console.log(list.list[2].wind.speed);
-    var windspeedThree = list.list[2].wind.speed;
-    $("#windspeed-day-3").text(windspeedThree);
-
-    //Day Four
-    console.log(list.list[3].weather[0].description);
-    var descriptionFour = list.list[3].weather[0].description;
-    $("#description-day-4").text(descriptionFour);
-
-    console.log(list.list[3].main.temp);
-    var tempFour = list.list[3].main.temp;
-    $("#temp-day-4").text(tempFour);
-
-    console.log(list.list[3].main.humidity);
-    var humidityFour = list.list[3].main.humidity;
-    $("#humidity-day-4").text(humidityFour);
-
-    console.log(list.list[3].wind.speed);
-    var windspeedFour = list.list[3].wind.speed;
-    $("#windspeed-day-4").text(windspeedFour);
-
-    //Day 5
-    console.log(list.list[4].weather[0].description);
-    var descriptionFive = list.list[4].weather[0].description;
-    $("#description-day-5").text(descriptionFive);
-
-    console.log(list.list[4].main.temp);
-    var tempFive = list.list[4].main.temp;
-    $("#temp-day-5").text(tempFive);
-
-    console.log(list.list[4].main.humidity);
-    var humidityFive = list.list[4].main.humidity;
-    $("#humidity-day-5").text(humidityFive);
-
-    console.log(list.list[4].wind.speed);
-    var windspeedFive = list.list[4].wind.speed;
-    $("#windspeed-day-5").text(windspeedFive);
-
-    // For OpenWeather Search and MapBox
-    function fetchAndDisplayWeather(city) {
-        const [latitude, longitude] = coordinates;
-        const openWeatherEndPoint = (BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`)
-
-        fetch(openWeatherEndPoint)
-            .then(response => response.json())
-            .then(data => {
-                const cardContainer = document.getElementById('day-one');
-                cardContainer.innerHTML = '';
-
-            //     Create card to put new day-1 forecast for city searched
-                const newCard = document.createElement('div');
-                newCard.classList.add('weather-card');
-
-            //     Display relevant info
-                card.innerHTML = `<div>${list.list[0].dt_txt}</div>
-                <div>Main: ${list.list[0].main.temp.toFixed(0)}</div>
-                <div>Low: ${list.list[0].main.temp_min}</div>
-                <div>${list.list[0].weather[0].main}</div>`
-
-            //     Append card to cardContainer
-                cardContainer.appendChild(newCard);
-            })
-            .catch(error => {
-                console.error(`Error fetching weather data for ${city}:`, error);
-            })
+        $("#insert-weather").html(html);
     }
 
 
-// loop through the array using forEach()
-//     for ( let i = 0; i < 40; i += 8 ) {
-        //
-        // if (list.list[0].weather[0].main === 'Clear' && list.list[0].main.temp.toFixed(0) > 70) {
-        //     backgroundImageUrl = 'url()';
-        // } else if (list.list[0].weather[0].main === 'Clear' && list.list[0].main.temp.toFixed(0) <= 70) {
-        //     backgroundImageUrl = 'url("img/pexels-lukas-296234.jpg")';
-        // } else if (list.list[0].weather[0].main === 'Rain') {
-        //     backgroundImageUrl = 'url()';
-        // } else {
-        //     backgroundImageUrl = 'url()';
-        // }
-        // // Apply the background image to your card
-        // $("#insert-forecast-img").css('background-image', backgroundImageUrl, 'background-repeat', "no-repeat");
-        // $("#insert-forecast").html(html).html(html);
-        // console.log(list[i]);
-
-
-    // if (list.weather[0].main === 'Clear' && list.main.temp > 70) {
-    //     backgroundImageUrl = 'url()';
-    // } else if (list.weather[0].main === 'Clear' && list.main.temp <= 70) {
-    //     backgroundImageUrl = 'url("img/pexels-lukas-296234.jpg")';
-    // } else if (list.weather[0].main === 'Rain') {
-    //     backgroundImageUrl = 'url()';
-    // } else {
-    //     backgroundImageUrl = 'url()';
-    // }
-    // Apply the background image to your card
-    // $("#insert-weather-img").css('background-image', backgroundImageUrl, 'background-repeat', "no-repeat");
-
-
-    // $("#insert-forecast").html(html);
-    // console.log(list.list[0].weather[0].main);
+// This is for the top card, current city forecast.
+    function fetchAndUpdateCurrentCityWeather() {
+        $.get(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((data) => {
+            updateCurrentCityForecast(data);
+        });
+    }
+//
+// // Call the function to update the current city weather when the page loads
+    fetchAndUpdateCurrentCityWeather();
 })
-
-// COde for forecast images
-// navigator.geolocation.getCurrentPosition(function(position) {
-//
-//     // Set latitude and longitude
-//     let lat = position.coords.latitude;
-//     let lon = position.coords.longitude;
-//
-//     // Fetch data from the openweathermap API
-//     fetch(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`)
-//         .then(response => response.json())
-//         .then(data => {
-//
-//             // Set a condition for the background image
-//             let condition = data.weather[0].main;
-//             let backgroundImage = '';
-//             // Select images based on condition
-//             switch(condition.toLowerCase()) {
-//                 case 'clouds': backgroundImage = '/images/cloudy.jpg'; break;
-//                 case 'rain': backgroundImage = '/images/rainy.jpg'; break;
-//                 case 'snow': backgroundImage = '/images/snowy.jpg'; break;
-//                 case 'clear': backgroundImage = '/images/sunny.jpg'; break;
-//                 default: backgroundImage = '/images/default.jpg';
-//             }
-//
-//             // Create a style element and set the selected image as the background
-//             let styleNode = document.createElement("style");
-//             document.head.appendChild(styleNode);
-//             styleNode.innerHTML = `html body { background-image: url('${backgroundImage}'); }`;
-//         });
-// });
-
-
-
-
-
-
-
 

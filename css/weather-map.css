@@ -1,5 +1,9 @@
+
 body{
-    background-color: background-color:  #3d3d29;;
+    background: linear-gradient(115.7deg, rgb(132, 222, 255) 7.6%, rgb(8, 30, 64) 99.8%);
+}
+.navbar{
+    background: linear-gradient(115.7deg, rgb(132, 222, 255) 7.6%, rgb(8, 30, 64) 99.8%);
 }
 .container{
     display: flex;
@@ -14,72 +18,83 @@ body{
 #insert-weather{
     display: flex;
     flex-direction: column;
-    align-items: start;
-    color: red;
-    font-size: 15px;
-    background-color: lightblue;
-    opacity: 0.5;
+    width: 20%;
+    text-align: center;
+    font-size: 20px;
+    flex-wrap: wrap;
+    color: lightblue;
 }
 
 #insert-weather:hover {
     opacity: 1.0;
 }
-/*.temp-text{*/
-/*    padding: 10px;*/
-/*}*/
-/*.card-img-top{*/
-/*    display: flex;*/
-/*    width: 100%;*/
-/*}*/
-/*.col-two{*/
-/*    display: flex;*/
-/*    position: relative;*/
-/*    bottom: 935px;*/
-/*    left: 380px*/
-/*}*/
-/*#insert-forecast{*/
-/*    display: flex;*/
-/*    position: relative;*/
-/*    top: 0;*/
-/*}*/
-/*.row-two{*/
-/*    display: flex;*/
-/*    position: relative;*/
-/*    top: 500px;*/
-/*    right: 365px;*/
-/*}*/
-/*#insert-forecast{*/
-/*    display: flex;*/
-/*    position: relative;*/
-/*    top: 0;*/
-/*}*/
-/*.forecast-img{*/
-/*    display: flex;*/
-/*    width: 100%;*/
-/*    height: 450px;*/
-/*}*/
-#map {
-    display: flex;
-    margin-left: 150px;
-    width: 75%;
-    height: 500px;
-    margin-top: -300px;
+
+.col-forecast{
+    margin-left: 130px;
+
 }
-.card{
-    display: flex;
+.forecast-div {
+    display: inline-block;
+}
+#insert-forecast{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+#insert-forecast > div {
+    flex: 0 0 auto;
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid red;
+    height: 350px;
     width: 200px;
     text-align: center;
-    text-transform: capitalize;
-    background-color: #4d5154;
+    border-radius: 15px;
     opacity: 0.5;
-    margin-left: 50px
 }
-.card:hover {
-    opacity: 1.0;
+#insert-forecast > div:hover {
+    opacity: 2.0;
 }
+#map {
+    display: flex;
+    margin-left: 140px;
+    width: 75%;
+    height: 500px;
+   margin-top: 20px;
+}
+
 .card-top{
     display: flex;
-    height: 300px;
-    width: 75%;
+    width: 50%;
+    height: 500px;
     margin-left: 130px;
+    background-repeat: no-repeat;
+}
+
+.day-week{
+    color: orange;
+    text-align: inherit;
+    font-size: larger;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.nav{
+    display: flex;
+    height: 200px;
+}
+.current-temp{
+    display: flex;
+    margin-left: 100px;
+}
+button{
+    display: inline;
+    position: relative;
+    left: 900px;
+    bottom: 800px;
+}
+input{
+    display: inline;
+    position: relative;
+    left: 900px;
+    bottom: 800px;
+    border-radius: .5%;
 }

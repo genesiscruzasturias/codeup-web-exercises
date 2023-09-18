@@ -1,0 +1,63 @@
+/* Style for the map */
+#map {
+    height: 300px;
+    width: 100%;
+}
+
+/* Style for the location search input and button */
+#location-search {
+    margin-bottom: 10px;
+}
+
+/* Style for the "Current City Forecast" card */
+#current-city-forecast {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Style for the "5-Day Forecast" cards */
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.col-card {
+    flex-basis: calc(20% - 20px); /* Adjust the width as needed */
+    margin-right: 20px;
+}
+
+/* Add more specific styles for your cards as needed */
+
+/* Style for the search button */
+#search-button {
+    width: 100%;
+}
+
+/* Additional styling for card content (customize as needed) */
+.card {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+/* Style for the city name */
+.city-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Style for weather conditions */
+.cloud-img {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Style for temperature, humidity, and windspeed */
+.card p {
+    margin: 5px 0;
+}
