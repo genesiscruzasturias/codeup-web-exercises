@@ -11,9 +11,9 @@
 <body>
 <div class="page-wrapper">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="width: 100%">
         <!--NAVBAR-->
-            <nav class="navbar bg-body-tertiary">
+            <nav class="navbar ">
                 <div class="container-fluid">
                 <a class="navbar-brand" href="#">Cruzzin' Weather</a>
                 </div>
@@ -30,15 +30,17 @@
                 </div>
                 <!--SEATTLE AND SEARCHED CITY 5 DAY FORECAST-->
                 <div class="col-forecast">
-                    <div id="insert-forecast" class="insert-forecast"></div>
+                    <div id="insert-forecast" class="insert-forecast d-flex"></div>
                 </div>
                 <div class="col">
                     <!--SEARCH FOR A CITY INPUT/BUTTON-->
-                    <input id="mapbox-search" type="text" placeholder="Search for a location">
+                    <input id="mapbox-search" type="text">
                     <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
                     <!--MY HANDY, DANDY MAP-->
+                    <div id="geocoder" class="geocoder"></div>
                     <div id="map"></div>
                     <pre id="coordinates" class="coordinates"></pre>
+                </div>
                 </div>
             </div>
         </div>

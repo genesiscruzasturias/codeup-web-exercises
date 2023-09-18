@@ -8,13 +8,28 @@ const map = new mapboxgl.Map({
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [-122.33178089059577, 47.60769856291158], // starting position [lng, lat]
     zoom: 9 // starting zoom
+});// Add the control to the map.
+const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
 });
 // INITIALIZE MARKER FOR MAPBOX
 const marker = new mapboxgl.Marker({
     draggable: true
 })
-    .setLngLat([0, 0])
+    .setLngLat([-122.33178089059577, 47.60769856291158])
     .addTo(map);
+
+// return a LngLat object such as {lng: 0, lat: 0}
+// var {lng,lat} = map.getCenter();
+//
+// [lng, lat] = [coord.lng, coord.lat];
+// console.log('longitude: ', lng, 'latitude: ', lat);
+
+$('#mapbox-search').attr('placeholder','Search a city...');
+
+
+document.getElementById('mapbox-search').appendChild(geocoder.onAdd(map));
 
 const currentCityElement = document.getElementById('insert-weather');
 const forecastElement = document.getElementById('insert-forecast');
@@ -32,6 +47,16 @@ function updateForecast() {
         .then(response => response.json())
         // CONTAINS DATA FOR THE SPECIFIED CITY
         .then(list => {
+            // CHECK WHERE THE PIN IS AT
+            // console.log(list.city.coord)
+            marker.setLngLat(list.city.coord)
+            const lngLatArr= Object.values(list.city.coord);
+            console.log(lngLatArr)
+            map.flyTo({
+                center: [lngLatArr[1], lngLatArr[0]],
+                essential: true,
+                zoom: 13
+            })
             //DIDNT UNDERSTAND IT BUT KNOW IT KIND OF WORKS
             const forecastItems = list.list.slice(0, 80); // Get the first 5 forecast items
             // CLEARS "insert-forecast" element
@@ -54,6 +79,8 @@ function updateForecast() {
                 const forecastTemp = item.main.temp.toFixed(0);
                 const tempLow = item.main.temp_min.toFixed(0);
                 const forecastConditions = item.weather[0].main;
+                const iconUrl = 'https://openweathermap.org/img/wn/10d@2x.png'
+                const icon = item.weather[0].icon
 
                 const forecastItem = document.createElement('div');
                 forecastElement.classList.add('forecast-div-two')
@@ -62,6 +89,7 @@ function updateForecast() {
                 forecastItem.innerHTML = `
                 <div class="day-week">${dayOfWeek}</div>
                 <hr>
+                <div class="icon">${icon}</div>
                 <div>Main: ${forecastTemp}°F</div>
                 <hr>
                 <div>Low: ${tempLow}°F</div>
@@ -71,9 +99,11 @@ function updateForecast() {
             `;
 
                 forecastElement.appendChild(forecastItem);
+
+
             });
 
-            // Make the API request to fetch current city
+            // API request to fetch current city
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
@@ -84,7 +114,7 @@ function updateForecast() {
 
 
                     currentCityElement.innerHTML = `
-                    <div class="forecast-div-two">
+                    
                     <div class="city-name">${data.name}</div>
                     <div>Current Temp:</div> 
                     <div>${data.main.temp.toFixed(0)}°F</div>
@@ -92,11 +122,12 @@ function updateForecast() {
                     <div>${data.main.humidity}%</div>
                     <div>Conditions:</div> 
                     <div class="cloud-img">${data.weather[0].main}</div>
-                    </div>`;
-                    // Process and use the forecast data as needed
+                    `;
+
                 })
         });
 }
+
         updateButton.addEventListener('click', updateForecast);
 
 const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?'
@@ -122,6 +153,7 @@ $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&a
         html +=
             `<div class="forecast-div">
         <div class="day-week">${dayOfWeek}</div>
+        <img id="weathericon" alt=""/>
         <hr>
         <div>Main: ${forecastData.main.temp.toFixed(0)}°F</div>
         <hr>
@@ -161,7 +193,7 @@ $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&a
             backgroundImageURL = 'url("img/pexels-stephan-seeber-1261728.jpg")';
         }
 
-        // Apply the background image to your card
+        // Apply the background image to my card
         $("#insert-weather-img").css('background-image', backgroundImageURL).css('background-repeat', 'no-repeat');
 
         $("#insert-weather").html(html);
