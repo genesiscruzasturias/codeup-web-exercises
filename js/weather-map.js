@@ -5,7 +5,7 @@ mapboxgl.accessToken = MAPBOX_API_TOKEN;
 const map = new mapboxgl.Map({
     container: 'map', // container ID
 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
     center: [-122.33178089059577, 47.60769856291158], // starting position [lng, lat]
     zoom: 9 // starting zoom
 });// Add the control to the map.
@@ -89,7 +89,7 @@ function updateForecast() {
                 forecastItem.innerHTML = `
                 <div class="day-week">${dayOfWeek}</div>
                 <hr>
-                <div class="icon">${icon}</div>
+                <div class="icon"></div>
                 <div>Main: ${forecastTemp}°F</div>
                 <hr>
                 <div>Low: ${tempLow}°F</div>
