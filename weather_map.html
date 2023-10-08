@@ -18,46 +18,42 @@
                 <a class="navbar-brand" href="#">Cruzzin' Weather</a>
                 </div>
             </nav>
-        <div class="row ">
-            <div class="col">
-                <!--SEATTLE AND SEARCHED CITY CURRENT FORECAST-->
-                <div class="card-top mb-3" id="insert-weather-img" >
-                    <div class="insert-weather-img"></div>
-                    <div class="card-body">
-                        <div id="insert-weather"></div>
-                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <!--SEATTLE AND SEARCHED CITY 5 DAY FORECAST-->
-                <div class="col-forecast">
-                    <div id="insert-forecast" class="insert-forecast d-flex"></div>
-                </div>
+            <div class="row ">
                 <div class="col">
-                    <!--SEARCH FOR A CITY INPUT/BUTTON-->
-                    <input id="mapbox-search" type="text">
-                    <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
-                    <!--MY HANDY, DANDY MAP-->
-                    <div id="geocoder" class="geocoder"></div>
-                    <div id="map"></div>
-                    <pre id="coordinates" class="coordinates"></pre>
-                </div>
+                    <!--SEATTLE AND SEARCHED CITY CURRENT FORECAST-->
+                    <div class="card-top mb-3" id="insert-weather-img" >
+                        <div class="insert-weather-img"></div>
+                        <div class="card-body">
+                            <div id="insert-weather"></div>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <!--SEATTLE AND SEARCHED CITY 5 DAY FORECAST-->
+                    <div class="col-forecast">
+                        <div id="insert-forecast" class="insert-forecast d-flex"></div>
+                    </div>
+                    <div class="col">
+                        <!--SEARCH FOR A CITY INPUT/BUTTON-->
+                        <input id="mapbox-search" type="text">
+                        <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
+                        <!--MY HANDY, DANDY MAP-->
+                        <div id="geocoder" class="geocoder"></div>
+                        <div id="map"></div>
+                        <pre id="coordinates" class="coordinates"></pre>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
 </div>
-        <!--GEOCODER-->
-        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
-            <!-- jQuery CDN Below-->
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-            <!--API Keys Below-->
-            <script src="js/keys.js"></script>
-            <!--CUSTOM JS BELOW-->
-             <script src="js/weather-map.js">
-                 <!--BOOTSRAP CDN-->
-             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-             </script>
+<!--GEOCODER-->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+<!-- jQuery CDN Below-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!--CUSTOM JS BELOW-->
+<script type="module" src="js/weather-map.js"></script>
+    <!--BOOTSRAP CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

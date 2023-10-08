@@ -34,31 +34,55 @@
     }
     "use strict";
     // TODO: Create an AJAX GET request for the file under data/inventory.json
-    $.ajax({
-      // contentType: "application/json",
-      type: "GET",
-      url: "data/inventory.json",
-      dataType: "json",
-      success: function (data) {
-        alert('Welcome!');
-        // res = data;
-        let items = '';
-        $.each(data, function (i, item) {
-          var rows = "<tr>"
-                  + "<td class='yourTableTh'>" + item.title + "</td>"
-                  + "<td class='yourTableTh'>" + item.quantity + "</td>"
-                  + "<td class='yourTableTh'>" + item.categories + "</td>"
-                  + "<td class='yourTableTh'>" + item.price + "</td>"
-                  + "</tr>";
-          $('#products').append(rows);
-        });
+    // $.ajax({
+    //   // contentType: "application/json",
+    //   type: "GET",
+    //   url: "data/inventory.json",
+    //   dataType: "json",
+    //   success: function (data) {
+    //     alert('Welcome!');
+    //     // res = data;
+    //     let items = '';
+    //     $.each(data, function (i, item) {
+    //       var rows = "<tr>"
+    //               + "<td class='yourTableTh'>" + item.title + "</td>"
+    //               + "<td class='yourTableTh'>" + item.quantity + "</td>"
+    //               + "<td class='yourTableTh'>" + item.categories + "</td>"
+    //               + "<td class='yourTableTh'>" + item.price + "</td>"
+    //               + "</tr>";
+    //       $('#products').append(rows);
+    //     });
+    //
+    //     // window.location.href = "/Home/Details/" + data.id;
+    //   },
+    //   error: function (jqXHR, textStatus, errorThrown) {
+    //     $("#postResult").val(jqXHR.statusText);
+    //   }
+    // });
+    // REFACTOR TO USE FETCH REQUEST
+    const url = 'data/inventory.json';
+    const toolElement = document.getElementById('insertProducts');
+    const allData = {};
 
-        // window.location.href = "/Home/Details/" + data.id;
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        $("#postResult").val(jqXHR.statusText);
-      }
-    });
+    fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              console.log(data)
+              let variable = ``;
+              data.forEach(data => {
+                variable += `<tr>
+                   <td class="title"></td>
+                   <td class='yourTableTh'>${data.title}</td>
+                   <td class='yourTableTh'>${data.quantity}</td>
+                   <td class='yourTableTh'>${data.categories}</td>
+                   <td class='yourTableTh'>${data.price}</td>
+                   </tr>`;
+
+              });
+              document.getElementById("products").innerHTML = variable;
+              })
+
+
 
 
     // TODO: Take the data from inventory.json and append it to the products table

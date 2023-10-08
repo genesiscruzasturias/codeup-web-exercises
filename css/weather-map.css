@@ -7,6 +7,9 @@ body{
 .navbar{
     background: linear-gradient(115.7deg, rgb(132, 222, 255) 7.6%, rgb(8, 30, 64) 99.8%);
 }
+.navbar-brand{
+    color: darkorange;
+}
 .container{
     display: flex;
     justify-content: space-between;
@@ -27,6 +30,10 @@ body{
     font-size: 20px;
     flex-wrap: wrap;
     color: lightblue;
+    opacity: 0.5;
+}
+#insert-weather:hover {
+    opacity: 1.0;
 }
 .btn.active {
     .searched-five-day{
@@ -51,10 +58,6 @@ body{
         opacity: 2.0;
     }
 }
-#insert-weather:hover {
-    opacity: 1.0;
-}
-
 .col-forecast{
     margin-left: 130px;
 

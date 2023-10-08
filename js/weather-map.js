@@ -1,7 +1,7 @@
-"use strict";
+import keys from "./keys.js";
 
 // INITIALIZE MAPBOX
-mapboxgl.accessToken = MAPBOX_API_TOKEN;
+mapboxgl.accessToken = keys.mapbox;
 const map = new mapboxgl.Map({
     container: 'map', // container ID
 // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
@@ -39,10 +39,10 @@ const updateButton = document.getElementById('update-forecast-btn');
 function updateForecast() {
     // GRABS THE CITY THE USER INPUT INTO THE TEXT FIELD PROVIDED
     const cityInput = document.getElementById('mapbox-search').value;
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${WEATHER_MAP_KEY}&units=imperial`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${keys.weatherMap}&units=imperial`;
     const lngLat = marker.getLngLat();
     // GROUPS THE FORECAST DATA DAY BY DAY
-    fetch(BASE_FORECAST_URL + `q=${cityInput}&appid=${WEATHER_MAP_KEY}&units=imperial`)
+    fetch(BASE_FORECAST_URL + `q=${cityInput}&appid=${keys.weatherMap}&units=imperial`)
         // CONVERTS API INTO JSON FORMAT
         .then(response => response.json())
         // CONTAINS DATA FOR THE SPECIFIED CITY
@@ -58,7 +58,7 @@ function updateForecast() {
                 zoom: 13
             })
             //DIDNT UNDERSTAND IT BUT KNOW IT KIND OF WORKS
-            const forecastItems = list.list.slice(0, 80); // Get the first 5 forecast items
+            const forecastItems = list.list.slice(0, 80); // Get the necessary forecast items
             // CLEARS "insert-forecast" element
             forecastElement.innerHTML = ''; // Clear previous forecast
 
@@ -136,7 +136,7 @@ const BASE_FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast?'
 // console.log(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`)
 
 // SEATTLE 5 DAY FORECAST
-$.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((list) => {
+$.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${keys.weatherMap}&units=imperial`).done((list) => {
 
     let html = '';
 
@@ -201,7 +201,7 @@ $.get(BASE_FORECAST_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&a
 
 // This is for the top card, current city forecast.
     function fetchAndUpdateCurrentCityWeather() {
-        $.get(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${WEATHER_MAP_KEY}&units=imperial`).done((data) => {
+        $.get(BASE_WEATHER_URL + `lat=${47.60537214369371}&lon=${-122.32423484983421}&appid=${keys.weatherMap}&units=imperial`).done((data) => {
             updateCurrentCityForecast(data);
         });
     }
