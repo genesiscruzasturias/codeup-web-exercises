@@ -11,35 +11,45 @@
 <body>
 <div class="page-wrapper">
     <div class="container-fluid">
-        <div class="row" style="width: 100%">
+        <div class="row-top">
         <!--NAVBAR-->
-            <nav class="navbar ">
+            <nav class="navbar bg-body-tertiary">
                 <div class="container-fluid">
-                <a class="navbar-brand" href="#">Cruzzin' Weather</a>
+<!--                    <form class="d-flex" role="search">-->
+                        <!--SEARCH FOR A CITY INPUT/BUTTON-->
+                    <div class="form">
+                        <input id="mapbox-search" type="text">
+                        <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
+                    </div>
+<!--                    </form>-->
                 </div>
             </nav>
+        </div>
             <div class="row ">
                 <div class="col">
                     <!--SEATTLE AND SEARCHED CITY CURRENT FORECAST-->
                     <div class="card-top mb-3" id="insert-weather-img" >
+                        <h3>Today's Forecast</h3>
                         <div class="insert-weather-img"></div>
                         <div class="card-body">
                             <div id="insert-weather"></div>
                             <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                         </div>
+
                     </div>
+                    <!--MY HANDY, DANDY MAP-->
+                    <div id="geocoder" class="geocoder"></div>
+                    <div id="map"></div>
+                    <pre id="coordinates" class="coordinates"></pre>
+                </div>
+            </div>
                     <!--SEATTLE AND SEARCHED CITY 5 DAY FORECAST-->
                     <div class="col-forecast">
+                        <h3>5-day Forecast</h3>
                         <div id="insert-forecast" class="insert-forecast d-flex"></div>
-                    </div>
-                    <div class="col">
-                        <!--SEARCH FOR A CITY INPUT/BUTTON-->
-                        <input id="mapbox-search" type="text">
-                        <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>
-                        <!--MY HANDY, DANDY MAP-->
-                        <div id="geocoder" class="geocoder"></div>
-                        <div id="map"></div>
-                        <pre id="coordinates" class="coordinates"></pre>
+<!--                        &lt;!&ndash;SEARCH FOR A CITY INPUT/BUTTON&ndash;&gt;-->
+<!--                        <input id="mapbox-search" type="text">-->
+<!--                        <button id="update-forecast-btn" class="btn btn-primary">Update Forecast</button>-->
                     </div>
                 </div>
             </div>
